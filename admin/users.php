@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -11,7 +11,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </head>
     <body>
-        <?php  require_once 'process.php'; ?>
+        <?php  require_once 'process_user.php'; ?>
     <?php 
     if(isset($_SESSION['message'])):
     ?>
@@ -27,7 +27,7 @@
         <div class="container"> 
         <?php 
         $mysqli=new mysqli('localhost','root','','cms' ) or die(mysqli_error($mysqli));
-        $result=$mysqli->query("SELECT * FROM articles") or die($mysqli->error);
+        $result=$mysqli->query("SELECT * FROM users") or die($mysqli->error);
     ?>
     <div class="row justify-content.center">
     <table class="table">
@@ -42,12 +42,12 @@
     <?php 
     while($row=$result->fetch_assoc()):?>
     <tr>
-    <td><?php echo $row ['article_title'];?></td>
-    <td><?php echo $row ['article_id'];?></td>
+    <td><?php echo $row ['user_id'];?></td>
+    <td><?php echo $row ['user_name'];?></td>
     <td>
-    <a href="delete.php?edit=<?php echo $row['article_id'];?>"
+    <a href="users.php?edit=<?php echo $row['user_id'];?>"
     class="btn btn-info">Edit</a>
-    <a href="process.php?delete=<?php echo $row['article_id'];?>"
+    <a href="process.php?delete=<?php echo $row['user_id'];?>"
     class="btn btn-danger">Delete</a>
     </td>
     </tr>
